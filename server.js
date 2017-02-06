@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
+
 /*
     Configuration section.
 */
@@ -17,6 +18,7 @@ app.use(express.static('client'));
 */
 var indexController = require('./server/controllers/index');
 app.use(indexController);
+
 
 
 
