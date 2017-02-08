@@ -17,7 +17,7 @@
     "gulp": "^3.9.1",
     "gulp-codacy": "^1.0.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-sonar": "^3.0.0",
+    "gulp-sonar": "^2.1.0",
     "gulp-util": "^3.0.4",
     "gulp-if": "^2.0.0",
     "gulp-sequence": "^0.4.1",

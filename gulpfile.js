@@ -36,9 +36,9 @@ gulp.task('sonar', function () {
                 username: 'sonar',
                 password: 'sonar'
             },
-            projectKey: 'sonar:my-project:1.0.0',
-            projectName: 'My Project',
-            projectVersion: '1.0.0',
+            projectKey: 'sonar:budgup:0.0.1',
+            projectName: 'Budgup',
+            projectVersion: '0.0.1',
             // comma-delimited string of source directories
             sources: 'client/js,server/*',
             language: 'js',
