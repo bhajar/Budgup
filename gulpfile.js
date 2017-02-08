@@ -5,11 +5,18 @@ var sequence = require("gulp-sequence");
 var coveralls = require("./server/coveralls/coveralls.js");
 var sonar = require("gulp-sonar");
 var util = require('util');
+var mocha = require('gulp-mocha');
+var istanbul = require('gulp-istanbul');
+
+
+
 // Coveralls
 gulp.task('coveralls', function() {
     return gulp.src('./coverage/lcov.info')
         .pipe(coveralls());
 });
+
+
 
 
 //Codacy
@@ -63,5 +70,32 @@ gulp.task('sonar', function () {
 });
 
 
-gulp.task('default', sequence(['codacy','coveralls']));
+
+// Tests
+
+/*gulp.task('test', function() {
+    return gulp.src('test.js', {read: false})
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+        .pipe(mocha({reporter: 'nyan'}));
+
+});*/
+
+gulp.task('pre-test', function () {
+    return gulp.src(['lib/**/*.js'])
+    // Covering files
+        .pipe(istanbul())
+        // Force `require` to return covered files
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test', ['pre-test'], function () {
+    return gulp.src(['test/*.js'])
+        .pipe(mocha())
+        // Creating the reports after tests ran
+        .pipe(istanbul.writeReports())
+        // Enforce a coverage of at least 90%
+        .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
+});
+
+gulp.task('default', sequence(['codacy','coveralls','test']));
 
