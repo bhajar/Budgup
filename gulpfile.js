@@ -63,5 +63,5 @@ gulp.task('sonar', function () {
 });
 
 
-gulp.task('default', sequence(['codacy','coveralls','sonar']));
+gulp.task('default', sequence(['codacy','coveralls']));
 
