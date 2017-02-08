@@ -3,7 +3,8 @@ var codacy = require("gulp-codacy");
 var gulpIf = require("gulp-if");
 var sequence = require("gulp-sequence");
 var coveralls = require("./server/coveralls/coveralls.js");
-var sonar = require("gulp-sonar")
+var sonar = require("gulp-sonar");
+var util = require('util');
 // Coveralls
 gulp.task('coveralls', function() {
     return gulp.src('./coverage/lcov.info')
