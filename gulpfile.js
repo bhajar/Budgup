@@ -2,33 +2,24 @@ var gulp = require("gulp");
 var codacy = require("gulp-codacy");
 var gulpIf = require("gulp-if");
 var sequence = require("gulp-sequence");
-//var coveralls = require("./server/coveralls/coveralls.js");
-var cover = require('gulp-coverage');
-var coveralls = require('gulp-coveralls');
-
 var sonar = require("gulp-sonar");
 var util = require('util');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var path = require('path');
-
+var coveralls = require('gulp-coveralls');
 
 
 // Coveralls
-/*gulp.task('coveralls', function() {
-    return gulp.src('./coverage/lcov.info')
-        .pipe(coveralls());
-});*/
 
-
-/*gulp.task('coveralls', ['test'], function () {
+gulp.task('coveralls', ['test'], function () {
     if (!process.env.CI) {
         return;
     }
 
     return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
         .pipe(coveralls());
-});*/
+});
 
 //Codacy
 
@@ -83,15 +74,7 @@ gulp.task('sonar', function () {
 });
 
 
-
-// Tests
-
-/*gulp.task('test', function() {
-    return gulp.src('test.js', {read: false})
-    // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}));
-
-});*/
+//  Tests
 
 gulp.task('pre-test', function () {
     return gulp.src(['lib/**/*.js'])
@@ -110,5 +93,5 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['codacy', 'pre-test','test']));
+gulp.task('default', sequence(['codacy', 'coveralls','pre-test','test']));
 
