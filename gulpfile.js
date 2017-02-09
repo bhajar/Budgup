@@ -17,15 +17,16 @@ gulp.task('coveralls', ['test'], function () {
         return;
     }
 
-    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+    return gulp.src('test/coverage/**/lcov.info')
         .pipe(coveralls());
+
 });
 
 //Codacy
 
 gulp.task('codacy', function sendToCodacy() {
     return gulp
-        .src(['coverage/coverage.lcov'])
+        .src(['test/coverage/coverage.lcov'])
         .pipe(gulpIf(!!process.env.TRAVIS, codacy({
             token: '2dfdf24f7c8c47e79e1c6ca4c46ed44b'
         })))
