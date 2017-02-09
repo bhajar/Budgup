@@ -17,11 +17,13 @@ gulp.task('coveralls1', function() {
 });
 
 
-gulp.task('coveralls', ['test'], function () {
-    if (!process.env.CI) {
-        return;
-    }
-}
+gulp.task('pre-test', function () {
+    return gulp.src([
+        'server/*.js'
+    ])
+        .pipe(istanbul({includeUntested: true}))
+        .pipe(istanbul.hookRequire());
+});
 
 //Codacy
 
