@@ -19,7 +19,6 @@ gulp.task('coveralls', ['test'], function () {
 
     return gulp.src('test/coverage/**/lcov.info')
         .pipe(coveralls());
-
 });
 
 //Codacy
@@ -95,4 +94,3 @@ gulp.task('test', ['pre-test'], function () {
 });
 
 gulp.task('default', sequence(['pre-test','codacy', 'coveralls','test']));
-
