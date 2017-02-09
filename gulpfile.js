@@ -17,12 +17,13 @@ gulp.task('coveralls1', function() {
 });
 
 
-gulp.task('pre-test', function () {
-    return gulp.src([
-        'server/*.js'
-    ])
-        .pipe(istanbul({includeUntested: true}))
-        .pipe(istanbul.hookRequire());
+gulp.task('coveralls', ['test'], function () {
+    if (!process.env.CI) {
+        return;
+    }
+
+    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+        .pipe(coveralls());
 });
 
 //Codacy
