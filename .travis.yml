@@ -5,7 +5,7 @@ node_js:
 before_script:
   - npm install
 
-script: npm run-script test-on-travis
+script: gulp
 
 after_script:
-  - npm run coveralls
+  - ./node_modules/.bin/coveralls --verbose < coverage/lcov.info
