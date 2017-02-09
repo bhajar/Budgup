@@ -2,7 +2,10 @@ var gulp = require("gulp");
 var codacy = require("gulp-codacy");
 var gulpIf = require("gulp-if");
 var sequence = require("gulp-sequence");
-var coveralls = require("./server/coveralls/coveralls.js");
+//var coveralls = require("./server/coveralls/coveralls.js");
+var cover = require('gulp-coverage');
+var coveralls = require('gulp-coveralls');
+
 var sonar = require("gulp-sonar");
 var util = require('util');
 var mocha = require('gulp-mocha');
@@ -12,13 +15,13 @@ var path = require('path');
 
 
 // Coveralls
-gulp.task('coveralls1', function() {
+/*gulp.task('coveralls', function() {
     return gulp.src('./coverage/lcov.info')
         .pipe(coveralls());
-});
+});*/
 
 
-gulp.task('coveralls', ['test'], function () {
+/*gulp.task('coveralls', ['test'], function () {
     if (!process.env.CI) {
         return;
     }
@@ -36,7 +39,18 @@ gulp.task('codacy', function sendToCodacy() {
             token: '2dfdf24f7c8c47e79e1c6ca4c46ed44b'
         })))
         ;
+});*/
+gulp.task('coveralls', function () {
+    return gulp.src('tests/**/*.js', { read: false })
+        .pipe(cover.instrument({
+            pattern: ['src/**/*.js']
+        }))
+        .pipe(mocha()) // or .pipe(jasmine()) if using jasmine
+        .pipe(cover.gather())
+        .pipe(cover.format({ reporter: 'lcov' }))
+        .pipe(coveralls());
 });
+
 
 // Sonar
 
@@ -105,5 +119,5 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['codacy','coveralls','test']));
+gulp.task('default', sequence(['codacy','coveralls']));
 
