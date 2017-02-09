@@ -7,6 +7,7 @@ var sonar = require("gulp-sonar");
 var util = require('util');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
+var path = require('path');
 
 
 
