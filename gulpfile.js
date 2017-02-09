@@ -11,13 +11,17 @@ var istanbul = require('gulp-istanbul');
 
 
 // Coveralls
-gulp.task('coveralls', function() {
+gulp.task('coveralls1', function() {
     return gulp.src('./coverage/lcov.info')
         .pipe(coveralls());
 });
 
 
-
+gulp.task('coveralls', ['test'], function () {
+    if (!process.env.CI) {
+        return;
+    }
+}
 
 //Codacy
 
