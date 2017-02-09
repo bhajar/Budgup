@@ -28,7 +28,7 @@ var path = require('path');
 
     return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
         .pipe(coveralls());
-});
+});*/
 
 //Codacy
 
@@ -39,17 +39,8 @@ gulp.task('codacy', function sendToCodacy() {
             token: '2dfdf24f7c8c47e79e1c6ca4c46ed44b'
         })))
         ;
-});*/
-gulp.task('coveralls', function () {
-    return gulp.src('tests/**/*.js', { read: false })
-        .pipe(cover.instrument({
-            pattern: ['src/**/*.js']
-        }))
-        .pipe(mocha()) // or .pipe(jasmine()) if using jasmine
-        .pipe(cover.gather())
-        .pipe(cover.format({ reporter: 'lcov' }))
-        .pipe(coveralls());
 });
+
 
 
 // Sonar
@@ -119,5 +110,5 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['codacy','coveralls']));
+gulp.task('default', sequence(['codacy', 'pre-test','test']));
 

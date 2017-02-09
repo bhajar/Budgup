@@ -26,6 +26,7 @@
     "gulp-sequence": "^0.4.1",
     "gulp-sonar": "^2.1.0",
     "gulp-util": "^3.0.4",
+    "gulp-coverage": "^0.3.37",
     "istanbul": "^0.3.0",
     "mocha-lcov-reporter": "^1.2.0",
     "nodemon": "1.8.1"
@@ -33,7 +34,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node_modules/.bin/nodemon server.js --ignore client/",
-    "test": "_mocha",
+    "test": "gulp",
     "coverage": "istanbul cover _mocha -- -R spec | coveralls",
     "test-on-travis": "./node_modules/.bin/istanbul cover --report lcovonly ./node_modules/.bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
