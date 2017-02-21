@@ -21,6 +21,7 @@ Clonez ce répertoire, installez les dependences et lancez le serveur (vous aure
     git clone git://github.com/ProjetBudgup/Budgup.git
     cd Budgup
     npm install
+    gulp
     node server.js
 
 
