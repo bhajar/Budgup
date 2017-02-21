@@ -25,7 +25,7 @@ gulp.task('coveralls', ['test'], function () {
 
 gulp.task('codacy', function sendToCodacy() {
     return gulp
-        .src(['./coverage/coverage.lcov'])
+        .src(['coverage/coverage.lcov'])
         .pipe(gulpIf(!!process.env.TRAVIS, codacy({
             token: '41e25d0a34ec49e08b8815c4490573fe'
         })))
