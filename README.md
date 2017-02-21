@@ -19,7 +19,7 @@ Un véritable assistant sûr et sécurisé dans la poche !
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
 
     git clone git://github.com/ProjetBudgup/Budgup.git
-    cd cozy-template
+    cd Budgup
     npm install
     node server.js
 
