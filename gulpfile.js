@@ -27,7 +27,7 @@ gulp.task('codacy', function sendToCodacy() {
     return gulp
         .src(['test/coverage/coverage.lcov'])
         .pipe(gulpIf(!!process.env.TRAVIS, codacy({
-            token: '2dfdf24f7c8c47e79e1c6ca4c46ed44b'
+            token: '41e25d0a34ec49e08b8815c4490573fe'
         })))
         ;
 });
