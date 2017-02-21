@@ -18,12 +18,12 @@ Un véritable assistant sûr et sécurisé dans la poche !
 
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
 
-git clone git://github.com/ProjetBudgup/Budgup.git
-cd Budgup
-npm install
-gulp
-node server.js
-open http://localhost:9250/
+    git clone git://github.com/ProjetBudgup/Budgup.git
+    cd Budgup
+    npm install
+    gulp
+    node server.js
+    open http://localhost:9250/
 
 
 
