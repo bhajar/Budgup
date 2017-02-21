@@ -28,10 +28,9 @@ gulp.task('codacy', function sendToCodacy() {
         .src(['test/coverage/coverage.lcov'])
         .pipe(codacy({
             token: '41e25d0a34ec49e08b8815c4490573fe'
-        })
+        }))
         ;
 });
-
 
 
 // Sonar
