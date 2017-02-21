@@ -3,7 +3,7 @@
 ## Badges
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aaabd3bb9d894845b41d77f3e0c1bc9e)](https://www.codacy.com/app/KhaoulaZitoun/Budgup?utm_source=github.com&utm_medium=referral&utm_content=KhaoulaZitoun/Budgup&utm_campaign=badger) <br/>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aaabd3bb9d894845b41d77f3e0c1bc9e)](https://www.codacy.com/app/ProjetBudgup/Budgup?utm_source=github.com&utm_medium=referral&utm_content=KhaoulaZitoun/Budgup&utm_campaign=badger) <br/>
 [![Build Status](https://travis-ci.org/ProjetBudgup/PBudgup.svg?branch=master)](https://travis-ci.org/KhaoulaZitoun/Budgup) <br/>
 [![Coverage Status](https://coveralls.io/repos/github/KhaoulaZitoun/Budgup/badge.svg)](https://coveralls.io/github/KhaoulaZitoun/Budgup)
 
@@ -18,10 +18,12 @@ Un véritable assistant sûr et sécurisé dans la poche !
 
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
 
-    git clone git://github.com/ProjetBudgup/Budgup.git
-    cd Budgup
-    npm install
-    node server.js
+git clone git://github.com/ProjetBudgup/Budgup.git
+cd Budgup
+npm install
+gulp
+node server.js
+open http://localhost:9250/
 
 
 
