@@ -7,15 +7,15 @@ var util = require('util');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var path = require('path');
-//var coveralls = require('gulp-coveralls');
+var coveralls = require('gulp-coveralls');
 
 
 // Coveralls
 
-/*gulp.task('coveralls', function() {
+gulp.task('coveralls', function() {
   return gulp.src('coverage/lcov.info')
     .pipe(coveralls());
-});*/
+});
 
 //Codacy
 
@@ -89,4 +89,4 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['pre-test','test'],'codacy'/*, 'coveralls'*/));
+gulp.task('default', sequence(['pre-test','test'],'codacy', 'coveralls'));
