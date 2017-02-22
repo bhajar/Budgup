@@ -30,13 +30,12 @@
     "gulp-coverage": "^0.3.37",
     "istanbul": "^0.3.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "jshint": "^2.7.0",
     "nodemon": "1.8.1"
   },
   "scripts": {
     "start": "node server.js",
     "dev": "node_modules/.bin/nodemon server.js --ignore client/",
-    "test": "jshint index.js && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage"  },
   "repository": {
     "type": "git",
