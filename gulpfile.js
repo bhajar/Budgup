@@ -12,12 +12,12 @@ var coveralls = require('gulp-coveralls');
 
 // Coveralls
 
-gulp.task('coveralls', ['test'], function () {
+gulp.task('coveralls', function () {
    /* if (!process.env.CI) {
         return;
     }*/
 
-    return gulp.src('test/coverage/**/lcov.info')
+    return gulp.src('./coverage/lcov.info')
         .pipe(coveralls());
 });
 //Codacy
