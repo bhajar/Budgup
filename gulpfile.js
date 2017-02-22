@@ -12,20 +12,14 @@ var coveralls = require('gulp-coveralls');
 
 // Coveralls
 
-/*gulp.task('coveralls', ['test'], function () {
+gulp.task('coveralls', ['test'], function () {
     if (!process.env.CI) {
         return;
     }
 
-    return gulp.src('test/coverage/**//*lcov.info')
+    return gulp.src('test/coverage/**/lcov.info')
         .pipe(coveralls());
-});*/
-
-gulp.task('coveralls', function() {
-  return gulp.src('./coverage/lcov.info')
-    .pipe(coveralls());
 });
-
 //Codacy
 
 gulp.task('codacy', function sendToCodacy() {
