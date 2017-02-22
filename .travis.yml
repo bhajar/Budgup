@@ -8,7 +8,7 @@ node_js:
   
 script:
   - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage
-  - gulp
+
 
 before_script:
   - npm install
