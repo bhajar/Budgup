@@ -4,6 +4,7 @@
   "description": "An application that helps you manage your budget",
   "main": "server.js",
   "dependencies": {
+    "coveralls": "^2.8.0",
     "deprecated": "^0.0.1",
     "body-parser": "1.14.2",
     "codacy-coverage": "^1.1.3",
