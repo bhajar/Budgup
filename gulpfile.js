@@ -7,8 +7,8 @@ var util = require('util');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var path = require('path');
-//var coveralls = require('gulp-coveralls');
-var coveralls = require('./index.js');
+var coveralls = require('gulp-coveralls');
+
 
 // Coveralls
 
@@ -20,6 +20,7 @@ var coveralls = require('./index.js');
     return gulp.src('test/coverage/**//*lcov.info')
         .pipe(coveralls());
 });*/
+
 gulp.task('coveralls', function() {
   return gulp.src('./coverage/lcov.info')
     .pipe(coveralls());
