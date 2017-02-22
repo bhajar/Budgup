@@ -89,4 +89,4 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['pre-test','test'],'codacy', 'coveralls'));
+gulp.task('default', sequence(['pre-test','test'],'codacy'/*, 'coveralls'*/));
