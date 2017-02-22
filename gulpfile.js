@@ -13,9 +13,9 @@ var coveralls = require('gulp-coveralls');
 // Coveralls
 
 gulp.task('coveralls', ['test'], function () {
-    if (!process.env.CI) {
+   /* if (!process.env.CI) {
         return;
-    }
+    }*/
 
     return gulp.src('test/coverage/**/lcov.info')
         .pipe(coveralls());
