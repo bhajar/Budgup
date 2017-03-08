@@ -14,6 +14,9 @@ Budg’up est une application sécurisée qui vise à aider ses utilisateurs à 
 
 Un véritable assistant sûr et sécurisé dans la poche !
 
+## Installer l'environnement
+
+Veuillez suivre les instructions ici :  https://dev.cozy.io/v2.html#set-up-the-development-environment
 # Run
 
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
