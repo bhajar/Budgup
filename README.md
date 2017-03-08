@@ -25,7 +25,8 @@ Clonez ce répertoire, installez les dependences et lancez le serveur (vous aure
     cd Budgup
     npm install
     gulp
-    node server.js
+    curl -d @data.json -H "Content-type: application/json" -X POST http://127.0.0.1:5984/cozy/_bulk_docs
+    npm run dev
     open http://localhost:9250/
 
 
