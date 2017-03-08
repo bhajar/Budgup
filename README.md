@@ -14,6 +14,9 @@ Budg’up est une application sécurisée qui vise à aider ses utilisateurs à 
 
 Un véritable assistant sûr et sécurisé dans la poche !
 
+## Installer l'environnement
+
+Veuillez suivre les instructions ici :  https://dev.cozy.io/v2.html#set-up-the-development-environment
 # Run
 
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
@@ -22,8 +25,10 @@ Clonez ce répertoire, installez les dependences et lancez le serveur (vous aure
     cd Budgup
     npm install
     gulp
-    node server.js
+    curl -d @data.json -H "Content-type: application/json" -X POST http://127.0.0.1:5984/cozy/_bulk_docs
+    npm run dev
     open http://localhost:9250/
+
 
 
 
