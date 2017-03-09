@@ -6,6 +6,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9789ba2235b6403aa24a31248b62d5fe)](https://www.codacy.com/app/ProjetBudgup/Budgup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ProjetBudgup/Budgup&amp;utm_campaign=Badge_Grade) <br/>
 [![Build Status](https://travis-ci.org/ProjetBudgup/Budgup.svg?branch=master)](https://travis-ci.org/ProjetBudgup/Budgup) <br/>
 [![Coverage Status](https://coveralls.io/repos/github/ProjetBudgup/Budgup/badge.svg?branch=master)](https://coveralls.io/github/ProjetBudgup/Budgup?branch=master)
+
+
 [![GitHub version](https://badge.fury.io/gh/ProjetBudgup%2FBudgup.svg)](http://badge.fury.io/gh/ProjetBudgup%2FBudgup)
 
 
@@ -14,7 +16,7 @@ Budg’up est une application sécurisée qui vise à aider ses utilisateurs à 
 
 Un véritable assistant sûr et sécurisé dans la poche !
 
-## Installer l'environnement
+## Installer l'environnement Cozy
 
 Veuillez suivre les instructions ici :  https://dev.cozy.io/v2.html#set-up-the-development-environment
 # Run
