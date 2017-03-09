@@ -8,7 +8,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/ProjetBudgup/Budgup/badge.svg?branch=master)](https://coveralls.io/github/ProjetBudgup/Budgup?branch=master)
 
 [![GitHub release](https://img.shields.io/github/release/ProjetBudgup/Budgup.svg)]()
-#[![GitHub version](https://badge.fury.io/gh/ProjetBudgup%2FBudgup.svg)](http://badge.fury.io/gh/ProjetBudgup%2FBudgup)
 
 
 ## Description générale
