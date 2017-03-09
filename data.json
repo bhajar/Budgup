@@ -1,0 +1,47 @@
+
+{"docs":[
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c005da5",
+    "amount": -22.28,
+    "bankAccount": "2531",
+    "date": "2016-11-08T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Paiement carte Hassan Cehef",
+    "title": "ESPA Carte Hassan Cehef"
+  },
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c00ade3",
+    "amount": -3.05,
+    "bankAccount": "2531",
+    "date": "2017-01-17T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:51:59.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900f5d5",
+    "raw": "CB online Sergent Tchoutchou",
+    "title": "Sergent Tchoutchou"
+  },
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c00ade7",
+    "amount": -3.05,
+    "bankAccount": "2531",
+    "date": "2017-02-17T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:51:59.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900f5d5",
+    "raw": "CB online Sergent Tchoutchou",
+    "title": "Sergent Tchoutchou"
+  },
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c00ade8",
+    "amount": -3.05,
+    "bankAccount": "2531",
+    "date": "2016-12-16T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:51:59.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900f5d5",
+    "raw": "CB online Sergent Tchoutchou",
+    "title": "Sergent Tchoutchou"
+  }
+]}
