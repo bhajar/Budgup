@@ -7,8 +7,8 @@
 [![Build Status](https://travis-ci.org/ProjetBudgup/Budgup.svg?branch=master)](https://travis-ci.org/ProjetBudgup/Budgup) <br/>
 [![Coverage Status](https://coveralls.io/repos/github/ProjetBudgup/Budgup/badge.svg?branch=master)](https://coveralls.io/github/ProjetBudgup/Budgup?branch=master)
 
-
-[![GitHub version](https://badge.fury.io/gh/ProjetBudgup%2FBudgup.svg)](http://badge.fury.io/gh/ProjetBudgup%2FBudgup)
+[![GitHub release](https://img.shields.io/github/release/ProjetBudgup/Budgup.svg)]()
+#[![GitHub version](https://badge.fury.io/gh/ProjetBudgup%2FBudgup.svg)](http://badge.fury.io/gh/ProjetBudgup%2FBudgup)
 
 
 ## Description générale
