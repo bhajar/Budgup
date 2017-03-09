@@ -8,6 +8,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/ProjetBudgup/Budgup/badge.svg?branch=master)](https://coveralls.io/github/ProjetBudgup/Budgup?branch=master)
 [![GitHub release](https://img.shields.io/github/release/ProjetBudgup/Budgup.svg)]()
 
+## Page de présentation
+
+https://projetbudgup.github.io/Budgup/
 
 ## Description générale
 Budg’up est une application sécurisée qui vise à aider ses utilisateurs à gérer au mieux leurs ressources financières. Avec Budg'up vous pourrez observer l'évolution de votre solde, avoir une vision claire et hiérarchisée de vos dépenses et même être alerté en cas de découvert. Grâce aux données de consommation récupérées des différentes entreprises partenaires nous pourrons vous aider à vous fixer des objectifs mensuels et à ne pas les dépasser.
