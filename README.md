@@ -6,7 +6,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9789ba2235b6403aa24a31248b62d5fe)](https://www.codacy.com/app/ProjetBudgup/Budgup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ProjetBudgup/Budgup&amp;utm_campaign=Badge_Grade) <br/>
 [![Build Status](https://travis-ci.org/ProjetBudgup/Budgup.svg?branch=master)](https://travis-ci.org/ProjetBudgup/Budgup) <br/>
 [![Coverage Status](https://coveralls.io/repos/github/ProjetBudgup/Budgup/badge.svg?branch=master)](https://coveralls.io/github/ProjetBudgup/Budgup?branch=master)
-
 [![GitHub release](https://img.shields.io/github/release/ProjetBudgup/Budgup.svg)]()
 
 
@@ -18,12 +17,22 @@ Un véritable assistant sûr et sécurisé dans la poche !
 ## Installer l'environnement 
 
 Veuillez suivre les instructions ici :  https://dev.cozy.io/v2.html#set-up-the-development-environment
-# Run
 
 Clonez ce répertoire, installez les dependences et lancez le serveur (vous aurez besoin de Node.js)
 
+## Lancer l'environnement Cozy
+
+     cozy-dev vm:init
+     cozy-dev vm:start
+
+## Installer le projet
+
      git clone git://github.com/ProjetBudgup/Budgup.git
      cd Budgup
+
+     
+## Lancer le projet    
+
      npm install
      gulp
      curl -d @data.json -H "Content-type: application/json" -X POST http://127.0.0.1:5984/cozy/_bulk_docs
