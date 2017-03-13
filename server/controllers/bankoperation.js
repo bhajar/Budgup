@@ -205,21 +205,31 @@ router.get('/get_operations', function(req, res, next) {
             var last2MonthsDate = new Date();
             last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
             var currentDay = new Date();
+<<<<<<< HEAD
             var premierDuMois = currentDay.setDate(01);
+=======
+            var startOfCurrentMonth = currentDay.setDate(01);
+
+>>>>>>> feature/AlreadyPaid
             var operations = [];
             for (var x in obj) {
                 console.log("min :" + obj[x].min);
                 if (obj[x].count > 2) {
+<<<<<<< HEAD
                     // Si la date est dans les deux derniers mois et pas encore payée dans le mois courant
                     // Pas encore payé dans le mois courant = date non comprise entre le 1er du mois et le jour courant
                     // Mais ne prend pas en compte l'heure
                     if (obj[x].date >= last2MonthsDate && obj[x].date > premierDuMois && obj[x].date < currentDay) {
+=======
+                    if (obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) { // On enlève les opérations du mois déjà payées
+>>>>>>> feature/AlreadyPaid
                         operations.push(obj[x]);
                     }
                 }
             }
 
             res.status(200).json(operations);
+
 
 
         }
