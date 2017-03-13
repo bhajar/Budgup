@@ -204,18 +204,21 @@ router.get('/get_operations', function(req, res, next) {
 
             var last2MonthsDate = new Date();
             last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
+            var currentDay = new Date();
+            var startOfCurrentMonth = currentDay.setDate(01);
 
             var operations = [];
             for (var x in obj) {
                 console.log("min :" + obj[x].min);
                 if (obj[x].count > 2) {
-                    if (obj[x].date >= last2MonthsDate) {
+                    if (obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) { // On enlève les opérations du mois déjà payées
                         operations.push(obj[x]);
                     }
                 }
             }
 
             res.status(200).json(operations);
+
 
 
         }
