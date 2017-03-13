@@ -167,37 +167,41 @@ router.get('/get_operations', function(req, res, next) {
              */
 
             var obj = {};
+            var operation_title = "";
+            
+
             for (var i = 0; i < bankoperations.length; i++) {
+                operation_title = bankoperations[i].raw; // titre de l'opération
                 var count = 1;
                 var min = 0;
                 var max = 0;
 
 
 
-                if (typeof obj[bankoperations[i].raw] !== "undefined") {
-                    count = obj[bankoperations[i].raw].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
+                if (typeof obj[operation_title] !== "undefined") {
+                    count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
 
 
                     // On compare le min et le max
                      if(bankoperations[i].amount < min){
-                         obj[bankoperations[i].raw].min = bankoperations[i].amount;
-                         obj[bankoperations[i].raw].max = obj[bankoperations[i].raw].amount;
+                         obj[operation_title].min = bankoperations[i].amount;
+                         obj[operation_title].max = obj[operation_title].amount;
 
                      } else if (bankoperations[i].amount > max){
-                        obj[bankoperations[i].raw].max = bankoperations[i].amount;
-                        obj[bankoperations[i].raw].min = obj[bankoperations[i].raw].amount;
+                        obj[operation_title].max = bankoperations[i].amount;
+                        obj[operation_title].min = obj[operation_title].amount;
                      }
 
                 } else {
-                    obj[bankoperations[i].raw] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
+                    obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
                     min = bankoperations[i].amount;
                     max = bankoperations[i].amount;
 
                 }
-                if (bankoperations[i].date > obj[bankoperations[i].raw].date) {
-                    obj[bankoperations[i].raw].date = bankoperations[i].date;
+                if (bankoperations[i].date > obj[operation_title].date) {
+                    obj[operation_title].date = bankoperations[i].date;
                 }
-                obj[bankoperations[i].raw].count = count;
+                obj[operation_title].count = count;
 
 
             }
