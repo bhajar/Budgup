@@ -168,7 +168,7 @@ router.get('/get_operations', function(req, res, next) {
 
             var obj = {};
             var operation_title = "";
-            
+
 
             for (var i = 0; i < bankoperations.length; i++) {
                 operation_title = bankoperations[i].raw; // titre de l'opération
