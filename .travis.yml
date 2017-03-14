@@ -1,12 +1,17 @@
 language: node_js
+env:
+  global:
+  - secure: "nqznZJhVVVd3olT+E7uTAtG9CsAZcagDWmITHzvborytZDwCj88Fi/MiKUIAcOWBIFylO+Fn7KDxeaRaTBF/41Q1w/hSr/Sx15BXVDWSKMWNhOh6btXxpVn7eu9V+w74g8ND3BPUmnxZKh1bAnWr0UGKdlB1mB16VNvEib6oETJeBiZD1LONyC34uUkC70ivOaq4Mg1oLCuiBQDK9DK6AWImU9ZxfV7w6SJu+H+DEB/YURPszdf8rbtq91zBVBhoeCksTsxkBy/PRDdy5nJ32MJB8W5DllkS4riX2MyHNzQ8kePf4+y7ixdVVD07KYfW2XfR4MjHXsK9lNZKhWgDnX0GgsVEzaDbLpX1wpYepMdFXJU87fbrf86ToZT0LbRUjOI14SwC0rEkwL7aatSg2OicYpMyUMgZW+g4Bw+sMZa2IeEiA5D67urJD51f+VRTDD3dcQrm8UIxqNqCK8tPyvg9Ky292RKUhyLvkez0HT04LZcde5Yp18sx8eQAL20CkwbQgMolfQVLjeBo5J6Co99xtg0NnsdPMV2QFsmOkFibdhJXyMpWxxsB5kI3xL52FfpMbxLPJkoOJTyN69ah2YgxT1PDYbiY2pcT06G3Biowi4ctFDU4bc7rLsKc2cWngrxpP5UkwuXIvpkzYGixqXvNmXFo3DbKQFUiA3gh3Aw="
+
 node_js:
   - "4.3.0"
+  
+script:
+  - gulp
+
 
 before_script:
   - npm install
 
-script: gulp
-
 after_script:
   - npm run coveralls
-  - NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

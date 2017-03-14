@@ -7,19 +7,15 @@ var util = require('util');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var path = require('path');
-var coveralls = require('gulp-coveralls');
+//var coveralls = require('gulp-coveralls');
 
 
 // Coveralls
 
-gulp.task('coveralls', ['test'], function () {
-    if (!process.env.CI) {
-        return;
-    }
-
-    return gulp.src('test/coverage/**/lcov.info')
-        .pipe(coveralls());
-});
+/*gulp.task('coveralls', function() {
+  return gulp.src('coverage/lcov.info')
+    .pipe(coveralls());
+});*/
 
 //Codacy
 
@@ -27,7 +23,7 @@ gulp.task('codacy', function sendToCodacy() {
     return gulp
         .src(['coverage/coverage.lcov'])
         .pipe(gulpIf(!!process.env.TRAVIS, codacy({
-            token: '41e25d0a34ec49e08b8815c4490573fe'
+            token: '5c76e48af91f4658b6f5a21e88b8a748'
         })))
         ;
 });
@@ -93,4 +89,4 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-gulp.task('default', sequence(['pre-test','codacy', 'coveralls','test']));
+gulp.task('default', sequence(['pre-test','test'],'codacy'/*, 'coveralls'*/));
