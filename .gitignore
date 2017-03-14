@@ -22,3 +22,6 @@ coverage
 .idea
 *.iml
 .sonar
+
+Vagrantfile
+data.json

@@ -8,8 +8,10 @@ router.post('/bankoperations', function(req, res, next) {
      `BankOperation.create` will send a request to the Data System in order to create
      a new document of type "BankOperation".
 
+
      `req.body` is the request's body, it is here assumed that it exists and
      is a valid JavaScript object, matching the schema defined in the model.
+
      */
     BankOperation.create(req.body, function(err, debt) {
         if(err) {
@@ -169,44 +171,86 @@ router.get('/get_operations', function(req, res, next) {
              */
 
             var obj = {};
+            var operation_title = "";
+
+            var lastMonthDate = new Date();
+
+            lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+
             for (var i = 0; i < bankoperations.length; i++) {
+                operation_title = bankoperations[i].raw; // titre de l'opération
                 var count = 1;
-                var operation_title = bankoperations[i].raw; // titre de l'opération
+                var min = 0;
+                var max = 0;
+
+                if (bankoperations[i].date < lastMonthDate) { // ne pas inclure les opérations du mois courant
 
                 if (typeof obj[operation_title] !== "undefined") {
-                    obj[operation_title].count++; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'opération
+                    count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
+                    obj[operation_title].amount += bankoperations[i].amount;
+
+                    // On compare le min et le max
+                     if(bankoperations[i].amount < min){
+                         obj[operation_title].min = bankoperations[i].amount;
+                         obj[operation_title].max = obj[operation_title].amount;
+
+                     } else if (bankoperations[i].amount > max){
+                        obj[operation_title].max = bankoperations[i].amount;
+                        obj[operation_title].min = obj[operation_title].amount;
+                     }
+
                 } else {
                     obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
-                }
+                    obj[operation_title].count = 1; // on initialise "count"
 
+                }
                 if (bankoperations[i].date > obj[operation_title].date) {
-                    obj[operation_title].date = bankoperations[i].date;
+                    obj[operation_title].date = bankoperations[i].date;// date de la dernière opération
                 }
                 obj[operation_title].count = count;
+
+
+
+
+                }
+
             }
 
             var last2MonthsDate = new Date();
             last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
 
+            var currentDay = new Date();
+            var startOfCurrentMonth = currentDay.setDate(01);
+
             var operations = [];
             for (var x in obj) {
-                if (obj[x].count > 2) {
-                    if (obj[x].date >= last2MonthsDate) {
+                // On enlève les opérations du mois déjà payées
+                if (obj[x].count > 2 && obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) {
                         operations.push(obj[x]);
-                    }
                 }
             }
 
-            for (var i = 0; i < operations.length; i++) {
-                var opDate = operations[i].date;
+
+            // modification d'affichage du mois
+
+            for (var j = 0; j < operations.length; j++) {
+                var opDate = operations[j].date;
                 opDate.setMonth(opDate.getMonth() + 1);
-                operations[i].date = opDate;
+                operations[j].date = opDate;
             }
 
+
             res.status(200).json(operations);
+
+
+
+
+
+
         }
     });
 });
 
 // Export the router instance to make it available from other files.
 module.exports = router;
+
