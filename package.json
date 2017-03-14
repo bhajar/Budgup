@@ -36,8 +36,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node_modules/.bin/nodemon server.js --ignore client/",
-    "test": "./node_modules/.bin/gulp",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage"
+    "test": "node ./test/index.js",
+    "coverage": "`npm bin`/istanbul cover ./test/index.js",
+    "coveralls": "npm run-script coverage && node bin/coveralls.js < coverage/lcov.info"
   },
   "repository": {
     "type": "git",
