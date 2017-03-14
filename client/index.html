@@ -1,188 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tableau de Bord</title>
+  <title>Tableau de Bord</title>
 
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-   <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="css/custom.min.css" rel="stylesheet">
-  </head>
+  <!-- Custom Theme Style -->
+  <link href="css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-university"></i> <span>Application</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Bienvenue,</span>
-                <h2>John Doe</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <ul class="nav side-menu">
-                  <li class="active"><a><i class="fa fa-home"></i> Tableau de Bord</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /sidebar menu -->
-
-          </div>
+<body class="nav-md">
+<div class="container body">
+  <div class="main_container">
+    <div class="col-md-3 left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a href="index.html" class="site_title"><i class="fa fa-university"></i> <span>Budgup</span></a>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
+        <div class="clearfix"></div>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
-                  </ul>
-                </li>
-
-              </ul>
-            </nav>
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+          <div class="profile_pic">
+            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+          </div>
+          <div class="profile_info">
+            <span>Bienvenue,</span>
+            <h2>John Doe</h2>
           </div>
         </div>
-        <!-- /top navigation -->
+        <!-- /menu profile quick info -->
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="row tile_count">
-              <div id="total" class="tile_stats_count">
-                <span class="count_top"><i class="fa fa-money"></i> Montant Compte</span>
-                <div class="count">0 €</div>
-              </div>
-            </div>
+        <br />
 
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Charges à Venir</h2>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content">
-                    <div class="table-responsive">
-                      <table id="bankoperations" class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <th>Date</th>
-                            <th>Compte N°</th>
-                            <th>Montant</th>
-                            <th>Détail de l'opération</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>					
-				
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <ul class="nav side-menu">
+              <li class="active"><a><i class="fa fa-home"></i> Tableau de Bord</a></li>
+            </ul>
           </div>
         </div>
-        <!-- /page content -->
+        <!-- /sidebar menu -->
 
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="vendors/iCheck/icheck.min.js"></script>
+    <!-- top navigation -->
+    <div class="top_nav">
+      <div class="nav_menu">
+        <nav>
+          <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+          </div>
 
-    <!-- Custom Theme Scripts -->
-    <script src="js/custom.min.js"></script>
-    <script type="text/javascript">
-        function dateFormat(strDate){
-            var date = new Date(strDate);
-            var mm = (date.getMonth()+1 < 10) ? "0"+(date.getMonth()+1) : (date.getMonth()+1);
-            var dd = (date.getDate() < 10) ? "0"+date.getDate() : date.getDate();
-            var yyyy = date.getFullYear();
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <img src="images/img.jpg" alt="">John Doe
+                <span class=" fa fa-angle-down"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
+              </ul>
+            </li>
 
-            return dd+"/"+mm+"/"+yyyy;
-        }
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- /top navigation -->
 
-        $(document).ready(function(){
-            $.get("/get_operations", function(data){
-                var totalMin = 0;
-                var totalMax = 0;
-              //var total = 0;
-                data.map(function(item, i) {
-                    $("#bankoperations tbody").append(
-                        '<tr>'+
-                            '<td>'+dateFormat(item.date)+'</td>'+
-                            '<td>'+item.bankAccount+'</td>'+
-                            '<td>'+item.amount+' €</td>'+
-                            '<td>'+item.raw+'</td>'+
-                        '</tr>'
-                    );
-                    totalMin += item.min;
-                    totalMax += item.max;
-                  //total = item.amount;
-                });
-                if (data.length == 0) {
-                  $("#bankoperations tbody").append(
-                        '<tr>'+
-                            '<td colspan="4">Aucune charge à venir trouvée :(.</td>'+
-                        '</tr>'
-                    );
-                }
-                $("#total .count").text("Entre " + totalMin.toFixed(2)+" € et " + totalMax.toFixed(2)+ " €");
-                //$("#total .count").text(total.toFixed(2)+" €");
-            });
-        })
-    </script>
-  </body>
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="row tile_count">
+          <div id="total" class=" tile_stats_count">
+            <span class="count_top"><i class="fa fa-money"></i> Montant Compte</span>
+            <div class="count">0 €</div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Charges à Venir</h2>
+                <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="x_content">
+                <div class="table-responsive">
+                  <table id="bankoperations" class="table table-striped jambo_table bulk_action">
+                    <thead>
+                    <tr class="headings">
+                      <th>Date</th>
+                      <th>Compte N°</th>
+                      <th>Montant</th>
+                      <th>Détail de l'opération</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="vendors/nprogress/nprogress.js"></script>
+<!-- iCheck -->
+<script src="vendors/iCheck/icheck.min.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="js/custom.min.js"></script>
+<script type="text/javascript">
+  function dateFormat(strDate){
+    var date = new Date(strDate);
+    var mm = (date.getMonth()+1 < 10) ? "0"+(date.getMonth()+1) : (date.getMonth()+1);
+    var dd = (date.getDate() < 10) ? "0"+date.getDate() : date.getDate();
+    var yyyy = date.getFullYear();
+
+    return dd+"/"+mm+"/"+yyyy;
+  }
+
+  $(document).ready(function(){
+    $.get("/get_operations", function(data){
+      var totalMin = 0;
+      var totalMax = 0;
+      data.map(function(item, i) {
+        $("#bankoperations tbody").append(
+                '<tr>'+
+                '<td>'+dateFormat(item.date)+'</td>'+
+                '<td>'+item.bankAccount+'</td>'+
+                '<td>'+item.amount.toFixed(2)+' €</td>'+
+                '<td>'+item.raw+'</td>'+
+                '</tr>'
+        );
+        totalMin += item.min;
+        totalMax += item.max;
+      });
+      if (data.length == 0) {
+        $("#bankoperations tbody").append(
+                '<tr>'+
+                '<td colspan="4">Aucune charge à venir trouvée.</td>'+
+                '</tr>'
+        );
+      }
+      $("#total .count").text("Entre " + totalMin.toFixed(2)+" € et " + totalMax.toFixed(2)+ " €");
+      //$("#total .count").text(total.toFixed(2)+" €");
+    });
+  })
+</script>
+</body>
 </html>
