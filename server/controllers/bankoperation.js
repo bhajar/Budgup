@@ -199,9 +199,6 @@ router.get('/get_operations', function(req, res, next) {
 
                 } else {
                     obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
-                    min = bankoperations[i].amount;
-                    max = bankoperations[i].amount;
-
                     obj[operation_title].count = 1; // on initialise "count"
 
                 }
@@ -225,20 +222,19 @@ router.get('/get_operations', function(req, res, next) {
 
             var operations = [];
             for (var x in obj) {
-                if (obj[x].count > 2) {
-                    if (obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) { // On enlève les opérations du mois déjà payées
+                // On enlève les opérations du mois déjà payées
+                if (obj[x].count > 2 && obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) {
                         operations.push(obj[x]);
-                    }
                 }
             }
 
 
             // modification d'affichage du mois
 
-            for (var i = 0; i < operations.length; i++) {
-                var opDate = operations[i].date;
+            for (var j = 0; j < operations.length; j++) {
+                var opDate = operations[j].date;
                 opDate.setMonth(opDate.getMonth() + 1);
-                operations[i].date = opDate;
+                operations[j].date = opDate;
             }
 
 
