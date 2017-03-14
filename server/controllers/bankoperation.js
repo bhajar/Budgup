@@ -8,8 +8,10 @@ router.post('/bankoperations', function(req, res, next) {
      `BankOperation.create` will send a request to the Data System in order to create
      a new document of type "BankOperation".
 
+
      `req.body` is the request's body, it is here assumed that it exists and
      is a valid JavaScript object, matching the schema defined in the model.
+
      */
     BankOperation.create(req.body, function(err, debt) {
         if(err) {
