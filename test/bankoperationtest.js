@@ -5,8 +5,8 @@ var expect = require('chai').expect;
 describe('Fonction de Base', function() {
 
     var url = "http://localhost:9250/get_operations";
-    var raw = "Paiement carte Hassan Cehef";
-    var montant = -22,28;
+    var raw = "EDF";
+    var montant = -300.05;
     var operations = [];
     var rawTrouve = false;
     var montantTrouve = false;
