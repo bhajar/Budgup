@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 
 describe('Fonction de Base', function() {
 
-    var url = "http://localhost:9250/get_operations";
+    var url = "http://localhost:9250/get_operations1";
     var raw = "EDF";
     var montant = -300.05;
     var operations = [];
@@ -14,7 +14,7 @@ describe('Fonction de Base', function() {
     it('Verifier l\'existance de l\'opération', function(done) {
         request(url, function(error, response, body) {
             operations = JSON.parse(body);
-
+        console.log("taille :" + operations.length);
             for (var i = 0; i < operations.length; i++) {
                 if (operations[i].raw == raw) {
                     rawTrouve = true;
