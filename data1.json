@@ -1,0 +1,102 @@
+
+{"docs":[
+  {
+    "_id": "1c8d344dderf76caf9ad7ce4b55c005da9",
+    "amount": -22.00,
+    "bankAccount": "2531",
+    "date": "2016-12-30T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Facture SFR",
+    "title": "Facture SFR"
+  },
+  {
+  "_id": "1c8d344ddf76crraf9ad7ce4b55c005da8",
+  "amount": -22.00,
+  "bankAccount": "2531",
+  "date": "2017-01-30T00:00:00.000Z",
+  "dateImport": "2016-08-11T14:49:47.000Z",
+  "docType": "BankOperation",
+  "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+  "raw": "Facture SFR",
+  "title": "Facture SFR"
+  },
+  {
+  "_id": "1c8d344ddf76zzcaf9ad7ce4b55c005da7",
+  "amount": -22.00,
+  "bankAccount": "2531",
+  "date": "2017-02-30T00:00:00.000Z",
+  "dateImport": "2016-08-11T14:49:47.000Z",
+  "docType": "BankOperation",
+  "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+  "raw": "Facture SFR",
+  "title": "Facture SFR"
+  },
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c005db9",
+    "amount": 220.00,
+    "bankAccount": "2531",
+    "date": "2017-01-30T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Virement Caroline Dupont",
+    "title": "Virement Caroline Dupont"
+  },
+  {
+    "_id": "1c8d344ddf76caf9ad7ce4b55c005db8",
+    "amount": 220.00,
+    "bankAccount": "2531",
+    "date": "2017-02-30T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Virement Caroline Dupont",
+    "title": "Virement Caroline Dupont"
+  },
+  {
+    "_id": "1c8d344ddf76vaf9ad7ce4b55c006db8",
+    "amount": -80.00,
+    "bankAccount": "2531",
+    "date": "2017-02-29T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Achat H&M",
+    "title": "Achat H&M"
+  },
+  {
+    "_id": "1c8d3443df76caf9ad7ce4b55c006db8",
+    "amount": -19.90,
+    "bankAccount": "2531",
+    "date": "2017-01-04T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Abonnement NETFLIX",
+    "title": "Abonnement NETFLIX"
+  },
+  {
+    "_id": "1c8d344ddf76caf9af7ce4b55c006db8",
+    "amount": -19.90,
+    "bankAccount": "2531",
+    "date": "2017-02-04T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Abonnement NETFLIX",
+    "title": "Abonnement NETFLIX"
+  },
+  {
+    "_id": "1c8d344ddf76bef9ad7ce4b55c006db8",
+    "amount": -19.90,
+    "bankAccount": "2531",
+    "date": "2017-03-04T00:00:00.000Z",
+    "dateImport": "2016-08-11T14:49:47.000Z",
+    "docType": "BankOperation",
+    "operationTypeID": "b24a4f14e7f1a2ee3b507b2ba900d6c1",
+    "raw": "Abonnement NETFLIX",
+    "title": "Abonnement NETFLIX"
+  }
+  ]}

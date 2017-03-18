@@ -185,7 +185,7 @@ router.get('/get_operations', function(req, res, next) {
 
                 if (typeof obj[operation_title] !== "undefined") {
                     count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
-                    obj[operation_title].amount += bankoperations[i].amount;
+                   // obj[operation_title].amount += bankoperations[i].amount;
 
                     // On compare le min et le max
                      if(bankoperations[i].amount < min){
@@ -218,24 +218,25 @@ router.get('/get_operations', function(req, res, next) {
             last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
 
             var currentDay = new Date();
-            var startOfCurrentMonth = currentDay.setDate(01);
 
             var operations = [];
             for (var x in obj) {
                 // On enlève les opérations du mois déjà payées
-                if (obj[x].count > 2 && obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) {
+                console.log("current day :" + currentDay.getDate());
+                console.log("objet :" + obj[x].raw + "  " + obj[x].count);
+                if (obj[x].count >= 2 && obj[x].date >= last2MonthsDate && obj[x].date.getDate() > currentDay.getDate() ) {
                         operations.push(obj[x]);
+                    }
                 }
-            }
 
 
             // modification d'affichage du mois
 
-            for (var j = 0; j < operations.length; j++) {
+           /* for (var j = 0; j < operations.length; j++) {
                 var opDate = operations[j].date;
                 opDate.setMonth(opDate.getMonth() + 1);
                 operations[j].date = opDate;
-            }
+            }*/
 
 
             res.status(200).json(operations);
