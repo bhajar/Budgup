@@ -40,7 +40,7 @@
           </div>
           <div class="profile_info">
             <span>Bienvenue,</span>
-            <h2>John Doe</h2>
+            <h2>User X</h2>
           </div>
         </div>
         <!-- /menu profile quick info -->
@@ -93,6 +93,48 @@
             <span class="count_top"><i class="fa fa-money"></i> Montant Compte</span>
             <div class="count">0 €</div>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <br/>
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Upload</h2>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="x_content">
+
+                <div id="successMessage" class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  Fichier JSON a été importé avec succès.
+                </div>
+
+                <div id="errorMessage" class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong>Error</strong> Impossible de charger le fichier JSON.
+                </div>
+
+                <form action="/upload" method="post" id="uploadform" enctype="multipart/form-data">
+                  <p><input type="file" name="file" id="file"></p>
+                  <p><button type="submit" class="btn btn-primary" type="button">Submit</button></p>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="title_right">
+          <div class="x_content">
+            <button id="get_operations1" type="button" class="btn btn-default buttonAlgo">Algo de base</button>
+
+            <button id="get_operations2" type="button" class="btn btn-primary buttonAlgo">Already paid </button>
+
+            <button id="get_operations" type="button" class="btn btn-success buttonAlgo">MinMax</button>
+          </div>
+        </div>
         </div>
 
         <div class="clearfix"></div>
@@ -148,6 +190,43 @@
 <!-- Custom Theme Scripts -->
 <script src="js/custom.min.js"></script>
 <script type="text/javascript">
+  $(document).ready(function(){
+    $("#uploadform").submit(function(e){
+      e.preventDefault();
+
+      $("#errorMessage").hide();
+      $("#successMessage").hide();
+
+      var files = $("#file").get(0).files;
+      var formData = new FormData();
+
+      if (files.length > 0){
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          formData.append('file', file, file.name);
+        }
+      }
+
+      $.ajax({
+        url: '/upload',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        success: function (response) {
+          $("#successMessage").show();
+        },
+        error: function(){
+          $("#errorMessage").show();
+        }
+      });
+    });
+  });
+</script>
+<script type="text/javascript">
   function dateFormat(strDate){
     var date = new Date(strDate);
     var mm = (date.getMonth()+1 < 10) ? "0"+(date.getMonth()+1) : (date.getMonth()+1);
@@ -158,32 +237,50 @@
   }
 
   $(document).ready(function(){
-    $.get("/get_operations", function(data){
-      var totalMin = 0;
-      var totalMax = 0;
-      data.map(function(item, i) {
-        $("#bankoperations tbody").append(
-                '<tr>'+
-                '<td>'+dateFormat(item.date)+'</td>'+
-                '<td>'+item.bankAccount+'</td>'+
-                '<td>'+item.amount.toFixed(2)+' €</td>'+
-                '<td>'+item.raw+'</td>'+
-                '</tr>'
-        );
-        totalMin += item.min;
-        totalMax += item.max;
+
+    $(".buttonAlgo").click(function() {
+
+      var id = $(this).attr('id');
+
+      $.get(id, function(data){
+          $("#bankoperations tbody").empty();
+          var total = 0;
+          var totalMin = 0;
+          var totalMax = 0;
+          data.map(function(item, i) {
+
+            $("#bankoperations tbody").append(
+                    '<tr>'+
+                    '<td>'+dateFormat(item.date)+'</td>'+
+                    '<td>'+item.bankAccount+'</td>'+
+                    '<td>'+item.amount.toFixed(2)+' €</td>'+
+                    '<td>'+item.raw+'</td>'+
+                    '</tr>'
+            );
+            if (id == "get_operations") {
+              totalMin += item.min;
+              totalMax += item.max;
+            } else {
+              total += item.amount;
+            }
+          });
+          if (data.length == 0) {
+            $("#bankoperations tbody").append(
+                    '<tr>'+
+                    '<td colspan="4">Aucune charge à venir trouvée.</td>'+
+                    '</tr>'
+            );
+          }
+          if (id == "get_operations") {
+            $("#total .count").text("Entre " + totalMin.toFixed(2) + " € et " + totalMax.toFixed(2) + " €");
+          } else {
+            $("#total .count").text(total.toFixed(2)+" €");
+          }
+
+        });
       });
-      if (data.length == 0) {
-        $("#bankoperations tbody").append(
-                '<tr>'+
-                '<td colspan="4">Aucune charge à venir trouvée.</td>'+
-                '</tr>'
-        );
-      }
-      $("#total .count").text("Entre " + totalMin.toFixed(2)+" € et " + totalMax.toFixed(2)+ " €");
-      //$("#total .count").text(total.toFixed(2)+" €");
-    });
   })
+
 </script>
 </body>
 </html>

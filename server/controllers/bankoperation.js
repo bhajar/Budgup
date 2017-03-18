@@ -153,7 +153,123 @@ router.get('/bankoperations', function(req, res, next) {
         }
     });
 });
+//Algo de base: plus de trois mois
+router.get('/get_operations1', function(req, res, next) {
+    /*
+     `BankOperation.request` asks the data system to request a CouchDB view, given its
+     name.
+     */
 
+    BankOperation.request('all', function(err, bankoperations) {
+        if(err) {
+            /*
+             If an unexpected error occurs, forward it to Express error
+             middleware which will send the error properly formatted.
+             */
+            next(err);
+        } else {
+            /*
+             If everything went well, send the list of documents with the
+             correct HTTP status code and content type.
+             */
+
+            var obj = {};
+            for (var i = 0; i < bankoperations.length; i++) {
+                var count = 1;
+                if (typeof obj[bankoperations[i].raw] !== "undefined") {
+                    count = obj[bankoperations[i].raw].count + 1;
+                } else {
+                    obj[bankoperations[i].raw] = bankoperations[i];
+                }
+                if (bankoperations[i].date > obj[bankoperations[i].raw].date) {
+                    obj[bankoperations[i].raw].date = bankoperations[i].date;
+                }
+                obj[bankoperations[i].raw].count = count;
+            }
+
+            var last2MonthsDate = new Date();
+            last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
+
+            var operations = [];
+            for (var x in obj) {
+                if (obj[x].count > 2) {
+                    if (obj[x].date >= last2MonthsDate) {
+                        operations.push(obj[x]);
+                    }
+                }
+            }
+
+            res.status(200).json(operations);
+        }
+    });
+});
+
+//Algo: already paid
+
+//Algo de base: plus de trois mois
+router.get('/get_operations2', function(req, res, next) {
+    /*
+     `BankOperation.request` asks the data system to request a CouchDB view, given its
+     name.
+     */
+
+    BankOperation.request('all', function(err, bankoperations) {
+        if(err) {
+            /*
+             If an unexpected error occurs, forward it to Express error
+             middleware which will send the error properly formatted.
+             */
+            next(err);
+        } else {
+            /*
+             If everything went well, send the list of documents with the
+             correct HTTP status code and content type.
+             */
+
+            var obj = {};
+
+            var lastMonthDate = new Date();
+
+            lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+            for (var i = 0; i < bankoperations.length; i++) {
+                if (bankoperations[i].date < lastMonthDate) { // ne pas inclure les opérations du mois courant
+                    var count = 1;
+                    if (typeof obj[bankoperations[i].raw] !== "undefined") {
+                        count = obj[bankoperations[i].raw].count + 1;
+                    } else {
+                        obj[bankoperations[i].raw] = bankoperations[i];
+                    }
+                    if (bankoperations[i].date > obj[bankoperations[i].raw].date) {
+                        obj[bankoperations[i].raw].date = bankoperations[i].date;
+                    }
+                    obj[bankoperations[i].raw].count = count;
+                }
+            }
+
+            var last2MonthsDate = new Date();
+            last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
+
+            var currentDay = new Date();
+            var startOfCurrentMonth = currentDay.setDate(01);
+
+            var operations = [];
+            for (var x in obj) {
+                if (obj[x].count > 2) {
+                    if (obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) { // On enlève les opérations du mois déjà payées
+                        operations.push(obj[x]);
+                    }
+                }
+            }
+
+
+            res.status(200).json(operations);
+        }
+    });
+});
+
+
+
+//Algo : min max + les deux premiers
 // List of all bankoperations, for a given creditor
 router.get('/get_operations', function(req, res, next) {
     /*
