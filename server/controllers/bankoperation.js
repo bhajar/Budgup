@@ -200,7 +200,7 @@ router.get('/get_operations1', function(req, res, next) {
     });
 });
 
-//Algo: already paid
+/*** ALREADY PAID ***/
 
 //Algo de base: plus de trois mois
 router.get('/get_operations2', function(req, res, next) {
@@ -223,43 +223,63 @@ router.get('/get_operations2', function(req, res, next) {
              */
 
             var obj = {};
+            var operation_title = "";
 
             var lastMonthDate = new Date();
 
             lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+
+
             for (var i = 0; i < bankoperations.length; i++) {
+                operation_title = bankoperations[i].raw; // titre de l'opération
+                var count = 1;
+
                 if (bankoperations[i].date < lastMonthDate) { // ne pas inclure les opérations du mois courant
-                    var count = 1;
-                    if (typeof obj[bankoperations[i].raw] !== "undefined") {
-                        count = obj[bankoperations[i].raw].count + 1;
+
+                    if (typeof obj[operation_title] !== "undefined") {
+                        count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
                     } else {
-                        obj[bankoperations[i].raw] = bankoperations[i];
+                        obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
+                        //obj[operation_title].count = 1; // on initialise "count"
+
                     }
-                    if (bankoperations[i].date > obj[bankoperations[i].raw].date) {
-                        obj[bankoperations[i].raw].date = bankoperations[i].date;
+                    if (bankoperations[i].date > obj[operation_title].date) {
+                        obj[operation_title].date = bankoperations[i].date;// date de la dernière opération
                     }
-                    obj[bankoperations[i].raw].count = count;
+                    obj[operation_title].count = count;
+
+
                 }
+
             }
 
             var last2MonthsDate = new Date();
             last2MonthsDate.setMonth(last2MonthsDate.getMonth() - 2);
 
             var currentDay = new Date();
-            var startOfCurrentMonth = currentDay.setDate(01);
 
             var operations = [];
             for (var x in obj) {
-                if (obj[x].count > 2) {
-                    if (obj[x].date >= last2MonthsDate && obj[x].date < startOfCurrentMonth) { // On enlève les opérations du mois déjà payées
-                        operations.push(obj[x]);
-                    }
+
+                if (obj[x].count >= 2 && obj[x].date >= last2MonthsDate && obj[x].date.getDate() >= currentDay.getDate() ) {
+                    // Modification de l'affichage du mois
+                    obj[x].date.setMonth(currentDay.getMonth());
+                    operations.push(obj[x]);
                 }
+
             }
-
-
-            res.status(200).json(operations);
         }
+
+
+
+        res.status(200).json(operations);
+
+
+
+
+
+
+
     });
 });
 
@@ -301,29 +321,29 @@ router.get('/get_operations', function(req, res, next) {
 
                 if (bankoperations[i].date < lastMonthDate) { // ne pas inclure les opérations du mois courant
 
-                if (typeof obj[operation_title] !== "undefined") {
-                    count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
-                    //obj[operation_title].amount += bankoperations[i].amount;
+                    if (typeof obj[operation_title] !== "undefined") {
+                        count = obj[operation_title].count + 1; // si l'opération existe déjà dans la variable "obj", on incrémente "count" de l'operation
+                        //obj[operation_title].amount += bankoperations[i].amount;
 
-                    // On compare le min et le max
-                     if(bankoperations[i].amount < min){
-                         obj[operation_title].min = bankoperations[i].amount;
-                         obj[operation_title].max = obj[operation_title].amount;
+                        // On compare le min et le max
+                        if(bankoperations[i].amount < min){
+                            obj[operation_title].min = bankoperations[i].amount;
+                            obj[operation_title].max = obj[operation_title].amount;
 
-                     } else if (bankoperations[i].amount > max){
-                        obj[operation_title].max = bankoperations[i].amount;
-                        obj[operation_title].min = obj[operation_title].amount;
-                     }
+                        } else if (bankoperations[i].amount > max){
+                            obj[operation_title].max = bankoperations[i].amount;
+                            obj[operation_title].min = obj[operation_title].amount;
+                        }
 
-                } else {
-                    obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
-                    obj[operation_title].count = 1; // on initialise "count"
+                    } else {
+                        obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
+                        obj[operation_title].count = 1; // on initialise "count"
 
-                }
-                if (bankoperations[i].date > obj[operation_title].date) {
-                    obj[operation_title].date = bankoperations[i].date;// date de la dernière opération
-                }
-                obj[operation_title].count = count;
+                    }
+                    if (bankoperations[i].date > obj[operation_title].date) {
+                        obj[operation_title].date = bankoperations[i].date;// date de la dernière opération
+                    }
+                    obj[operation_title].count = count;
 
 
 
@@ -340,7 +360,7 @@ router.get('/get_operations', function(req, res, next) {
             var operations = [];
             for (var x in obj) {
 
-                if (obj[x].count >= 2 && obj[x].date >= last2MonthsDate && obj[x].date.getDate() > currentDay.getDate() ) {
+                if (obj[x].count >= 2 && obj[x].date >= last2MonthsDate && obj[x].date.getDate() >= currentDay.getDate() ) {
                     // Modification de l'affichage du mois
                     console.log("mois courrant :" +currentDay.getMonth());
                     obj[x].date.setMonth(currentDay.getMonth());
@@ -348,39 +368,52 @@ router.get('/get_operations', function(req, res, next) {
                     operations.push(obj[x]);
                 }
 
-                }
             }
-
-
-
-            res.status(200).json(operations);
-
-
-
-
-
-
-
-    });
-});// Upload Function
-router.post('/upload', upload.single('file'), function(req, res, next) {
-    BankOperation.requestDestroy("all", function() {
-        var file = req.file;
-        var arr = JSON.parse(file.buffer.toString());
-        arr = arr.docs;
-        for (var i = 0; i < arr.length; i++) {
-            BankOperation.create(arr[i], function (err, bankop) {
-                if (err) {
-                    console.log("err", err);
-                } else {
-                    console.log("bankop", bankop);
-                }
-            });
         }
-    });
-    res.status(200).json({ success: true });
-});
 
+
+
+        res.status(200).json(operations);
+
+
+
+
+
+
+
+    });
+});
+// Upload Function
+router.post('/upload', upload.single('file'), function(req, res, next) {
+    if (typeof req.file !== "undefined") {
+
+        var file = req.file;
+        var json_string = file.buffer.toString();
+        json_string = json_string.replace(/[^\u0000-\u007F]+/g, ""); // clean json from special chars
+        var arr = JSON.parse(json_string);
+        arr = arr.docs;
+
+        BankOperation.requestDestroy("all", function(){
+            var promises = [];
+            for (var i = 0; i < arr.length; i++) {
+                var p = new Promise(function(resolve) {
+                    BankOperation.create(arr[i], function(err, bankop) {
+                        if(err) {
+                            console.log("err", err);
+                        }
+                        resolve();
+                    });
+                });
+                promises.push(p);
+            }
+            Promise.all(promises).then(function(){
+                res.status(200).json({ success: true });
+            });
+        });
+
+    } else {
+        res.status(200).json({ success: false });
+    }
+});
 // Export the router instance to make it available from other files.
 module.exports = router;
-
