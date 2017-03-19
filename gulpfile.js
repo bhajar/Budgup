@@ -15,6 +15,7 @@ var jshint = require('gulp-jshint');
 
 // Coveralls
 
+
 gulp.task('coveralls', ['test'], function () {
     if (!process.env.CI) {
         return;
