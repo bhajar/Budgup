@@ -9,7 +9,7 @@ node_js:
 
 services:
     - couchdb
-    
+
 script:
   - gulp
 
@@ -17,6 +17,7 @@ before_script:
   - git clone git://github.com/mycozycloud/cozy-data-system.git
   - cd cozy-data-system
   - npm install forever coffee-script -g
+  - npm install --save bcrypt-nodejs && npm uninstall --save bcrypt
   - npm install # data-system
   - pwd
   - NAME=data-system TOKEN=token forever start -o forever-ds.log build/server.js
