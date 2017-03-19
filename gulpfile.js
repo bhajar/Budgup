@@ -10,13 +10,11 @@ var path = require('path');
 var coveralls = require('gulp-coveralls');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var nodemon = require('gulp-nodemon');
-var jshint = require('gulp-jshint');
-
+var nodemon = require('gulp-nodemon')
+var jshint = require('gulp-jshint')
 // Coveralls
 
-
-gulp.task('coveralls'/*, ['test'], */function () {
+gulp.task('coveralls', ['test'], function () {
     if (!process.env.CI) {
         return;
     }
@@ -36,20 +34,6 @@ gulp.task('codacy', function sendToCodacy() {
         ;
 });
 
-/*gulp.task('lint', function () {
-    gulp.src('./**//**.js')
-        .pipe(jshint())
-});
-
-gulp.task('develop', function () {
-    nodemon({ script: 'server.js'
-        , ext: 'html js'
-        , ignore: ['ignored.js']
-        , tasks: ['lint'] })
-        .on('restart', function () {
-            console.log('restarted!')
-        })
-});*/
 
 
 // Sonar
@@ -92,6 +76,24 @@ gulp.task('sonar', function () {
 });
 
 
+
+
+/*gulp.task('lint', function () {
+    gulp.src('./**/*/*.js')
+        .pipe(jshint())
+});
+
+gulp.task('develop', function () {
+    nodemon({ script: 'server.js'
+        , ext: 'html js'
+        , ignore: ['ignored.js']
+        , tasks: ['lint'] })
+        .on('restart', function () {
+            console.log('restarted!')
+        })
+});*/
+
+
 //  Tests
 
 gulp.task('pre-test', function () {
@@ -106,9 +108,8 @@ gulp.task('pre-test', function () {
 
 gulp.task('test', ['pre-test'], function () {
     return gulp.src(['test/*.js'])
-
-    //.pipe(sourcemaps.init())
-    //.pipe(uglify())
+       //.pipe(sourcemaps.init())
+        //.pipe(uglify())
         .pipe(mocha())
         // Creating the reports after tests ran
         .pipe(istanbul.writeReports())
@@ -116,9 +117,4 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
-
-// On enlève test, 'lint','develop','pre-test' pour le moment car on n'a pas simulé cozy
-
-gulp.task('default', sequence(['codacy', 'coveralls']));
-
-
+gulp.task('default', sequence(['pre-test','codacy', 'coveralls','test']));
