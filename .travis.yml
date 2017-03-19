@@ -2,15 +2,59 @@ language: node_js
 env:
   global:
   - secure: "nqznZJhVVVd3olT+E7uTAtG9CsAZcagDWmITHzvborytZDwCj88Fi/MiKUIAcOWBIFylO+Fn7KDxeaRaTBF/41Q1w/hSr/Sx15BXVDWSKMWNhOh6btXxpVn7eu9V+w74g8ND3BPUmnxZKh1bAnWr0UGKdlB1mB16VNvEib6oETJeBiZD1LONyC34uUkC70ivOaq4Mg1oLCuiBQDK9DK6AWImU9ZxfV7w6SJu+H+DEB/YURPszdf8rbtq91zBVBhoeCksTsxkBy/PRDdy5nJ32MJB8W5DllkS4riX2MyHNzQ8kePf4+y7ixdVVD07KYfW2XfR4MjHXsK9lNZKhWgDnX0GgsVEzaDbLpX1wpYepMdFXJU87fbrf86ToZT0LbRUjOI14SwC0rEkwL7aatSg2OicYpMyUMgZW+g4Bw+sMZa2IeEiA5D67urJD51f+VRTDD3dcQrm8UIxqNqCK8tPyvg9Ky292RKUhyLvkez0HT04LZcde5Yp18sx8eQAL20CkwbQgMolfQVLjeBo5J6Co99xtg0NnsdPMV2QFsmOkFibdhJXyMpWxxsB5kI3xL52FfpMbxLPJkoOJTyN69ah2YgxT1PDYbiY2pcT06G3Biowi4ctFDU4bc7rLsKc2cWngrxpP5UkwuXIvpkzYGixqXvNmXFo3DbKQFUiA3gh3Aw="
+  - GOPATH=${TRAVIS_BUILD_DIR}/_workspace
+  - COZY_V3_DOMAIN="localhost:8080"
+  - COZY_V3_PASSPHRASE="CozyTest_1"   
 
 node_js:
-  - "4.3.0"
+  - "6"
 
+services:
+  - couchdb
+  - docker
 
 script:
   - gulp
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 before_script:
+  # start couchdb 2 (docker)
+  - docker run -d -p 5984:5984 --name couch klaemo/couchdb:2.0.0
+  # go 1.7
+  - eval "$(gimme 1.7)"
+  - mkdir $GOPATH
+  # install stack v3
+  - go get -u github.com/cozy/cozy-stack
+  - go get -u github.com/rif/spark
+  # start a stack v3 instance from master (listening on 8080)
+  - curl -X PUT http://127.0.0.1:5984/{_users,_replicator,_global_changes}
+  - $GOPATH/bin/cozy-stack serve &
+  - sleep 1
+  - $GOPATH/bin/cozy-stack instances add --dev --passphrase "$COZY_V3_PASSPHRASE" "$COZY_V3_DOMAIN"
+  # install stack v2
+  - npm install -g coffee-script
+  # start a stack v2 from NPM (listening on 9104 & 9101)
+  - NODE_ENV=test NAME=datasystem TOKEN=token npm explore cozy-data-system npm run start &
+  - sleep 3
+  - npm explore cozy-proxy npm run postinstall
+  - NODE_ENV=test NAME=proxy TOKEN=token npm explore cozy-proxy npm run start &
+  - sleep 3
+  - npm explore cozy-data-system coffee commands.coffee test-install client-js ../../test/package.json
+  - export NAME=client-js
+  - export TOKEN=apptoken
+  # install an application and generate the associated token
+  # TODO: should use a CLI to install this application when permissions on /apps/ are added
+  - "$TRAVIS_BUILD_DIR/test/testapp-git-daemon.sh /tmp/testapp $TRAVIS_BUILD_DIR/test/testapp-manifest.json &"
+  - sleep 2
+  - sudo $GOPATH/bin/spark -port 80 /tmp/testapp &
+  - sleep 2
+  - $GOPATH/bin/cozy-stack apps install --domain "$COZY_V3_DOMAIN" mini "git://localhost/"
+  - export COZY_STACK_TOKEN=$($GOPATH/bin/cozy-stack instances token-app "$COZY_V3_DOMAIN" "mini")
+  - sleep 2
   - npm install
   - npm run dev
 
