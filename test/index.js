@@ -2,6 +2,7 @@ var assert = require('assert');
 var request = require('request');
 var expect = require('chai').expect;
 var fs = require('fs');
+var server = require('../server');
 
 var port = 9250;
 var url = "http://127.0.0.1:"+port;
@@ -45,32 +46,37 @@ function check_operation(url, raw) {
     });
 }
 
-describe('Upload', function() {
-    it('POST /upload', function() {
-        return upload().then(function(result) {
-            expect(result).to.equal('Opérationel');
-        });
-    });
-});
-describe('Test des Algos', function() {
-    describe('Algo de base', function() {
-        it('GET /get_operations1', function() {
-            return check_operation(url+"/get_operations1", "operation 10").then(function(result) {
-                expect(result).to.equal(true);
+new Promise(function(resolve) {
+    describe('Upload', function() {
+        this.timeout(10000);
+        it('POST /upload', function() {
+            return upload().then(function(result) {
+                expect(result).to.equal('Opérationel');
+                resolve();
             });
         });
     });
-    describe('Already Paid', function() {
-        it('GET /get_operations2', function() {
-            return check_operation(url+"/get_operations2", "EDF").then(function(result) {
-                expect(result).to.equal(true);
+}).then(function() {
+    describe('Test des Algos', function() {
+        describe('Algo de base', function() {
+            it('GET /get_operations1', function() {
+                return check_operation(url+"/get_operations1", "operation 10").then(function(result) {
+                    expect(result).to.equal(true);
+                });
             });
         });
-    });
-    describe('Min Max', function() {
-        it('GET /get_operations', function() {
-            return check_operation(url+"/get_operations", "EDF").then(function(result) {
-                expect(result).to.equal(true);
+        describe('Already Paid', function() {
+            it('GET /get_operations2', function() {
+                return check_operation(url+"/get_operations2", "EDF").then(function(result) {
+                    expect(result).to.equal(true);
+                });
+            });
+        });
+        describe('Min Max', function() {
+            it('GET /get_operations', function() {
+                return check_operation(url+"/get_operations", "EDF").then(function(result) {
+                    expect(result).to.equal(true);
+                });
             });
         });
     });
