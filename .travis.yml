@@ -5,14 +5,10 @@ env:
 
 node_js:
   - "4.3.0"
-install:
-  - sudo apt-get update
-  - sudo apt-get install virtualbox
-  - sudo apt-get install vagrant
-  - sudo apt-get install virtualbox-dkms
 
 script:
   - gulp
+
 
 before_script:
   - npm install cozy-dev -g
