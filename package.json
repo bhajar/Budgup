@@ -27,9 +27,6 @@
     "stream-combiner2": "^1.1.1",
     "through2": "^1.1.1"
   },
-  "bin": {
-    "coveralls": "./bin/coveralls.js"
-  },
   "devDependencies": {
     "chai": "*",
     "coveralls": "^2.11.16",
@@ -51,7 +48,9 @@
     "node-mocks-http": "1.6.1",
     "nodemon": "1.8.1",
     "request": "2.81.0",
-    "should": "^11.2.1"
+    "should": "^11.2.1",
+    "gulp-nodemon":"2.2.1",
+    "gulp-jshint":"2.0.4"
   },
   "scripts": {
     "start": "node server.js",
