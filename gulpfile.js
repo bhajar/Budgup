@@ -94,7 +94,7 @@ gulp.task('sonar', function () {
 //  Tests
 
 gulp.task('pre-test', function () {
-    return gulp.src(['lib/**/*.js'])
+    return gulp.src(['test/*.js'])
     // Covering files
         .pipe(istanbul())
         // Force `require` to return covered files
@@ -115,6 +115,9 @@ gulp.task('test', ['pre-test'], function () {
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
 
+
 // On enlève test pour le moment car on n'a pas simulé cozy
 
 gulp.task('default', sequence(['lint','develop','pre-test','codacy', 'coveralls']));
+
+
