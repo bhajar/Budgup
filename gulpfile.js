@@ -77,7 +77,7 @@ gulp.task('sonar', function () {
 //  Tests
 
 gulp.task('pre-test', function () {
-    return gulp.src(['lib/**/*.js'])
+    return gulp.src(['test/*.js'])
     // Covering files
         .pipe(istanbul())
         // Force `require` to return covered files
