@@ -1,4 +1,4 @@
-/*var assert = require('assert');
+var assert = require('assert');
 var request = require('request');
 var expect = require('chai').expect;
 var fs = require('fs');
@@ -80,4 +80,4 @@ new Promise(function(resolve) {
             });
         });
     });
-});*/
+});
