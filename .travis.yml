@@ -9,7 +9,6 @@ node_js:
 script:
   - gulp
 
-
 before_script:
   - npm install
 

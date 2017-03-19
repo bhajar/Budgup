@@ -9,9 +9,9 @@ router.post('/bankoperations', function(req, res, next) {
     /*
      `BankOperation.create` will send a request to the Data System in order to create
      a new document of type "BankOperation".
-
      `req.body` is the request's body, it is here assumed that it exists and
      is a valid JavaScript object, matching the schema defined in the model.
+
      */
     BankOperation.create(req.body, function(err, bankop) {
         if(err) {
@@ -317,9 +317,6 @@ router.get('/get_operations', function(req, res, next) {
 
                 } else {
                     obj[operation_title] = bankoperations[i]; // si l'opération n'existe pas, on l'ajoute à la variable "obj"
-                    min = bankoperations[i].amount;
-                    max = bankoperations[i].amount;
-
                     obj[operation_title].count = 1; // on initialise "count"
 
                 }
@@ -342,6 +339,7 @@ router.get('/get_operations', function(req, res, next) {
 
             var operations = [];
             for (var x in obj) {
+
                 if (obj[x].count >= 2 && obj[x].date >= last2MonthsDate && obj[x].date.getDate() > currentDay.getDate() ) {
                     // Modification de l'affichage du mois
                     console.log("mois courrant :" +currentDay.getMonth());
@@ -349,6 +347,7 @@ router.get('/get_operations', function(req, res, next) {
                     console.log("date objet pushé :" + obj[x].date.getMonth());
                     operations.push(obj[x]);
                 }
+
                 }
             }
 
