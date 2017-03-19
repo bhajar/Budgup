@@ -90,6 +90,7 @@ gulp.task('pre-test', function () {
 
 gulp.task('test', ['pre-test'], function () {
     return gulp.src(['test/*.js'])
+
     //.pipe(sourcemaps.init())
     //.pipe(uglify())
         .pipe(mocha())
