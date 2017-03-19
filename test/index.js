@@ -2,32 +2,41 @@ var assert = require('assert');
 var request = require('request');
 var expect = require('chai').expect;
 
-describe('Fonction de Base', function() {
+var port = 9250;
+var url = "http://127.0.0.1:"+port;
 
-    var url = "http://localhost:9250/get_operations";
-    var raw = "EDF";
-    var montant = -300.05;
-    var operations = [];
-    var rawTrouve = false;
-    var montantTrouve = false;
-
-    it('Verifier l\'existance de l\'opération', function(done) {
+function get_url(url) {
+    return new Promise(function(resolve, reject) {
         request(url, function(error, response, body) {
-            operations = JSON.parse(body);
-
-            for (var i = 0; i < operations.length; i++) {
-                if (operations[i].raw == raw) {
-                    rawTrouve = true;
-
-                    if (operations[i].amount == montant) {
-                        montantTrouve = true;
-                    }
-                }
+            if (error) {
+                resolve("Impossible de charger l'URL");
             }
-            expect(rawTrouve).to.be.true;
-            expect(montantTrouve).to.be.true;
-            done();
+
+            resolve('Opérationel');
         });
     });
+}
 
+describe('Teste des Algos', function() {
+    describe('Algo de base', function() {
+        it('GET /get_operations1', function() {
+            return get_url(url+"/get_operations1").then(function(result) {
+                expect(result).to.equal('Opérationel');
+            });
+        });
+    });
+    describe('Already Paid', function() {
+        it('GET /get_operations2', function() {
+            return get_url(url+"/get_operations2").then(function(result) {
+                expect(result).to.equal('Opérationel');
+            });
+        });
+    });
+    describe('Min Max', function() {
+        it('GET /get_operations', function() {
+            return get_url(url+"/get_operations").then(function(result) {
+                expect(result).to.equal('Opérationel');
+            });
+        });
+    });
 });
