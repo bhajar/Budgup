@@ -8,6 +8,8 @@ var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var path = require('path');
 var coveralls = require('gulp-coveralls');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 // Coveralls
@@ -17,7 +19,7 @@ gulp.task('coveralls', ['test'], function () {
         return;
     }
 
-    return gulp.src('test/coverage/lcov.info')
+    return gulp.src('coverage/lcov.info')
         .pipe(coveralls());
 });
 
@@ -77,15 +79,19 @@ gulp.task('sonar', function () {
 //  Tests
 
 gulp.task('pre-test', function () {
-    return gulp.src(['lib/**/*.js'])
+    return gulp.src(['test/*.js'])
     // Covering files
         .pipe(istanbul())
         // Force `require` to return covered files
         .pipe(istanbul.hookRequire());
 });
 
+
+
 gulp.task('test', ['pre-test'], function () {
     return gulp.src(['test/*.js'])
+       //.pipe(sourcemaps.init())
+        //.pipe(uglify())
         .pipe(mocha())
         // Creating the reports after tests ran
         .pipe(istanbul.writeReports())
