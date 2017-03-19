@@ -135,45 +135,45 @@
             <button id="get_operations" type="button" class="btn btn-success buttonAlgo">MinMax</button>
           </div>
         </div>
-        </div>
+      </div>
 
-        <div class="clearfix"></div>
+      <div class="clearfix"></div>
 
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Charges à Venir</h2>
-                <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Charges à Venir</h2>
+              <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+              <div class="table-responsive">
+                <table id="bankoperations" class="table table-striped jambo_table bulk_action">
+                  <thead>
+                  <tr class="headings">
+                    <th>Date</th>
+                    <th>Compte N°</th>
+                    <th>Montant</th>
+                    <th>Détail de l'opération</th>
+                  </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
               </div>
 
-              <div class="x_content">
-                <div class="table-responsive">
-                  <table id="bankoperations" class="table table-striped jambo_table bulk_action">
-                    <thead>
-                    <tr class="headings">
-                      <th>Date</th>
-                      <th>Compte N°</th>
-                      <th>Montant</th>
-                      <th>Détail de l'opération</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- /page content -->
-
   </div>
+  <!-- /page content -->
+
+</div>
 </div>
 
 <!-- jQuery -->
@@ -193,20 +193,16 @@
   $(document).ready(function(){
     $("#uploadform").submit(function(e){
       e.preventDefault();
-
       $("#errorMessage").hide();
       $("#successMessage").hide();
-
       var files = $("#file").get(0).files;
       var formData = new FormData();
-
       if (files.length > 0){
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
           formData.append('file', file, file.name);
         }
       }
-
       $.ajax({
         url: '/upload',
         type: 'POST',
@@ -232,55 +228,47 @@
     var mm = (date.getMonth()+1 < 10) ? "0"+(date.getMonth()+1) : (date.getMonth()+1);
     var dd = (date.getDate() < 10) ? "0"+date.getDate() : date.getDate();
     var yyyy = date.getFullYear();
-
     return dd+"/"+mm+"/"+yyyy;
   }
-
   $(document).ready(function(){
-
     $(".buttonAlgo").click(function() {
-
       var id = $(this).attr('id');
-
       $.get(id, function(data){
-          $("#bankoperations tbody").empty();
-          var total = 0;
-          var totalMin = 0;
-          var totalMax = 0;
-          data.map(function(item, i) {
-
-            $("#bankoperations tbody").append(
-                    '<tr>'+
-                    '<td>'+dateFormat(item.date)+'</td>'+
-                    '<td>'+item.bankAccount+'</td>'+
-                    '<td>'+item.amount.toFixed(2)+' €</td>'+
-                    '<td>'+item.raw+'</td>'+
-                    '</tr>'
-            );
-            if (id == "get_operations") {
-              totalMin += item.min;
-              totalMax += item.max;
-            } else {
-              total += item.amount;
-            }
-          });
-          if (data.length == 0) {
-            $("#bankoperations tbody").append(
-                    '<tr>'+
-                    '<td colspan="4">Aucune charge à venir trouvée.</td>'+
-                    '</tr>'
-            );
-          }
+        $("#bankoperations tbody").empty();
+        var total = 0;
+        var totalMin = 0;
+        var totalMax = 0;
+        data.map(function(item, i) {
+          $("#bankoperations tbody").append(
+                  '<tr>'+
+                  '<td>'+dateFormat(item.date)+'</td>'+
+                  '<td>'+item.bankAccount+'</td>'+
+                  '<td>'+item.amount.toFixed(2)+' €</td>'+
+                  '<td>'+item.raw+'</td>'+
+                  '</tr>'
+          );
           if (id == "get_operations") {
-            $("#total .count").text("Entre " + totalMin.toFixed(2) + " € et " + totalMax.toFixed(2) + " €");
+            totalMin += item.min;
+            totalMax += item.max;
           } else {
-            $("#total .count").text(total.toFixed(2)+" €");
+            total += item.amount;
           }
-
         });
+        if (data.length == 0) {
+          $("#bankoperations tbody").append(
+                  '<tr>'+
+                  '<td colspan="4">Aucune charge à venir trouvée.</td>'+
+                  '</tr>'
+          );
+        }
+        if (id == "get_operations") {
+          $("#total .count").text("Entre " + totalMin.toFixed(2) + " € et " + totalMax.toFixed(2) + " €");
+        } else {
+          $("#total .count").text(total.toFixed(2)+" €");
+        }
       });
+    });
   })
-
 </script>
 </body>
 </html>

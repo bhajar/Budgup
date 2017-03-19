@@ -1,6 +1,6 @@
 {
   "name": "Budgup",
-  "version": "0.2.0",
+  "version": "1.1.0",
   "description": "An application that helps you manage your budget",
   "main": "index.js",
   "directories": {
@@ -25,16 +25,18 @@
     "properties": "1.2.1",
     "request": "^2.81.0",
     "stream-combiner2": "^1.1.1",
-    "through2": "^1.1.1"
+    "through2": "^1.1.1",
+    "americano": "0.4.2"
   },
   "devDependencies": {
     "chai": "*",
-    "coveralls": "^2.11.16",
     "cozy-fixtures": "1.0.1",
     "gulp": "^3.9.1",
     "gulp-codacy": "^1.0.0",
     "gulp-coverage": "^0.3.37",
     "gulp-coveralls": "^0.1.4",
+    "gulp-uglify": "2.1.0",
+    "gulp-sourcemaps": "2.4.1",
     "gulp-if": "^2.0.0",
     "gulp-istanbul": "^1.1.1",
     "gulp-jsvalidate": "^3.0.0",
@@ -50,7 +52,9 @@
     "request": "2.81.0",
     "should": "^11.2.1",
     "gulp-nodemon":"2.2.1",
-    "gulp-jshint":"2.0.4"
+    "gulp-jshint":"2.0.4",
+    "querystring": "0.2.0",
+    "request-json": "0.5.3"
   },
   "scripts": {
     "start": "node server.js",
@@ -67,6 +71,8 @@
     "budgup",
     "manage"
   ],
+  "cozy-permissions": {},
+  "cozy-displayName": "Budgup",
   "author": "Budgup Team",
   "license": "MIT",
   "bugs": {
