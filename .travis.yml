@@ -10,6 +10,8 @@ script:
   - gulp
 
 before_script:
+  - npm install cozy-dev -g
+  - cozy-dev vm:start
   - npm install
 
 after_script:
