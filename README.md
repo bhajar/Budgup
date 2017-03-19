@@ -37,15 +37,18 @@ Clonez ce répertoire, installez les dependences et lancez le serveur (vous aure
 ## Lancer le projet    
 
      npm install
-     
      npm run dev
      open http://localhost:9250/
 
 
-## tester le projet localement
+## Tester le projet localement
 
-### Ajouter cette ligne dans package.json 
-"test": "./node_modules/.bin/gulp",
+Ajouter cette ligne dans package.json :
 
-puis lance : npm test
+     "test": "./node_modules/.bin/gulp"
+
+
+Puis lancer : 
+
+     npm test
 
