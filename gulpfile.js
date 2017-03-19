@@ -10,8 +10,8 @@ var path = require('path');
 var coveralls = require('gulp-coveralls');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var nodemon = require('gulp-nodemon')
-var jshint = require('gulp-jshint')
+
+
 // Coveralls
 
 gulp.task('coveralls', ['test'], function () {
@@ -74,24 +74,6 @@ gulp.task('sonar', function () {
         .pipe(sonar(options))
         .on('error', util.log);
 });
-
-
-
-
-/*gulp.task('lint', function () {
-    gulp.src('./**/*/*.js')
-        .pipe(jshint())
-});
-
-gulp.task('develop', function () {
-    nodemon({ script: 'server.js'
-        , ext: 'html js'
-        , ignore: ['ignored.js']
-        , tasks: ['lint'] })
-        .on('restart', function () {
-            console.log('restarted!')
-        })
-});*/
 
 
 //  Tests
